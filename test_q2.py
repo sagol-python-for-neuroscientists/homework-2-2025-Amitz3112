@@ -1,6 +1,6 @@
 """ Tests for question 2 - Spreading Virus """
-from hw2_q2 import Agent, Condition, meetup
-
+from shared import Agent, Condition
+from hw2_q2 import meetup
 data0 = (
     Agent("Adam", Condition.SICK),
     Agent("Cure0", Condition.CURE),
@@ -114,3 +114,4 @@ if __name__ == "__main__":
         raise AssertionError(errors)
     else:
         print("Tests pass successfully.")
+

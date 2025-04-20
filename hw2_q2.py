@@ -1,9 +1,7 @@
-from collections import namedtuple
-from enum import Enum
-
-Condition = Enum("Condition", ("CURE", "HEALTHY", "SICK", "DYING", "DEAD"))
-Agent = namedtuple("Agent", ("name", "category"))
-
+from shared import Condition
+from shared import Agent
+from hw2_q2a import only_meeters
+from hw2_q2b import now_we_meet
 
 def meetup(agent_listing: tuple) -> list:
     """Model the outcome of the meetings of pairs of agents.
@@ -29,3 +27,15 @@ def meetup(agent_listing: tuple) -> list:
         A list of Agents with their 'category' field changed according to the result
         of the meeting.
     """
+    
+    #Taking out healthy and dead agents
+    meeters=only_meeters(agent_listing)
+
+    #non-dead and non-healthy agents meet and change status
+    updated_agents=now_we_meet(meeters)
+    
+    #Concatenate updated agents list and excluded non-meeters list
+    for Agent in agent_listing:
+        if Agent.category == Condition.HEALTHY or Agent.category == Condition.DEAD:
+            updated_agents.append(Agent)
+    return(updated_agents)
